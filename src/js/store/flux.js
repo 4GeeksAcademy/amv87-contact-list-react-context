@@ -12,6 +12,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+			],
+			contacts: [
+				{
+					name: "Mike Anamendolla",
+					email: "mike.ana@example.com",
+					phone: "(870) 288-4149",
+					address: "5844 Hillcrest Rd"
+				},
+				{
+					name: "John Mayers",
+					email: "mike.ana@example.com",
+					phone: "(870) 288-4149",
+					address: "5844 Hillcrest Rd"
+				},
+				{
+					name: "Peter Watkins",
+					email: "mike.ana@example.com",
+					phone: "(870) 288-4149",
+					address: "5844 Hillcrest Rd"
+				}
 			]
 		},
 		actions: {

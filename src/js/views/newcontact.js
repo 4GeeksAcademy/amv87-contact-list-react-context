@@ -10,6 +10,7 @@ export const Newcontact = () => {
 
 	return (
 		<div className="container">
+			<h1 className="text-center mt-3">Add a new contact</h1>
 			<div class="mb-3">
 				<label for="fullName" class="form-label">Full Name</label>
 				<input type="text" class="form-control" id="fullName" placeholder="Full Name" />

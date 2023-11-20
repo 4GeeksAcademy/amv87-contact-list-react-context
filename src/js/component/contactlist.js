@@ -10,26 +10,26 @@ export const Contactlist = () => {
 
 	return (
 		<div className="container">
-			<div className="d-flex justify-content-end mb-3">
+			<div className="d-flex justify-content-end my-3">
 				<Link to="/newcontact">
 					<button className="btn btn-success">Add new contact</button>
 				</Link>
 			</div>
 			<ul className="list-group">
-				{store.contacts.map((item, index) => {
+				{store.contacts.map((item) => {
 					return (
-						<li key={index} className="list-group-item">
+						<li key={item.id} className="list-group-item">
 							<div className="row">
 								<div className="col-2 d-flex align-items-center justify-content-center">
 									<img src={icon} className="img-thumbnail rounded-circle" />
 								</div>
 								<div className="col-8">
-									<p className="fs-5 fw-bold">{item.name}</p>
+									<p className="fs-5 fw-bold">{item.full_name}</p>
 									<p className="text-secondary fw-bold my-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-geo-alt-fill" viewBox="0 0 16 16">
 										<path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
 										</svg> {item.address}</p>
 									<p className="text-secondary fw-bold my-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-telephone-fill" viewBox="0 0 16 16">
-										<path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+										<path fillRule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
 										</svg> {item.phone}</p>
 									<p className="text-secondary fw-bold my-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-envelope-fill" viewBox="0 0 16 16">
 										<path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
@@ -46,7 +46,7 @@ export const Contactlist = () => {
   										<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
 										</svg>
 									</button>
-									<div className="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+									<div className="modal fade" id="deleteModal" tabIndex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
 										<div className="modal-dialog">
 											<div className="modal-content">
 												<div className="modal-header">
@@ -58,7 +58,7 @@ export const Contactlist = () => {
 												</div>
 												<div className="modal-footer">
 													<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Oh no!</button>
-													<button type="button" className="btn btn-primary">Yes baby!</button>
+													<button type="button" className="btn btn-primary" onClick={()=>actions.deleteContact(item.id)} >Yes baby!</button>
 												</div>
 											</div>
 										</div>
@@ -69,6 +69,7 @@ export const Contactlist = () => {
 					);
 				})}
 			</ul>
+			<br></br>
 		</div>
 	);
 };

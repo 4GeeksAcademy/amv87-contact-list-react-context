@@ -13,26 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			contacts: [
-				{
-					name: "Mike Anamendolla",
-					email: "mike.ana@example.com",
-					phone: "(870) 288-4149",
-					address: "5844 Hillcrest Rd"
-				},
-				{
-					name: "John Mayers",
-					email: "mike.ana@example.com",
-					phone: "(870) 288-4149",
-					address: "5844 Hillcrest Rd"
-				},
-				{
-					name: "Peter Watkins",
-					email: "mike.ana@example.com",
-					phone: "(870) 288-4149",
-					address: "5844 Hillcrest Rd"
-				}
-			]
+			contacts: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -43,6 +24,32 @@ const getState = ({ getStore, getActions, setStore }) => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+				const store = getStore();
+				var requestOptions = {
+					method: 'GET',
+					redirect: 'follow'
+				  };
+				  
+				  fetch("https://playground.4geeks.com/apis/fake/contact/agenda/amv87", requestOptions)
+					.then(response => response.json())
+					.then(data => setStore({ contacts: data }))
+					.catch(error => console.log('error', error));
+			},
+			deleteContact: (indexToDelete) => {
+				//get the store
+				const store = getStore();
+
+				var requestOptions = {
+					method: 'DELETE',
+					redirect: 'follow'
+				  };
+				  
+				  fetch("https://playground.4geeks.com/apis/fake/contact/" + indexToDelete, requestOptions)
+					.then(response => response.json())
+					.then(data => setStore({ contacts: data }))
+					.catch(error => console.log('error', error));
+					
+				  
 			},
 			changeColor: (index, color) => {
 				//get the store

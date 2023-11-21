@@ -58,7 +58,7 @@ export const Contactlist = () => {
 												</div>
 												<div className="modal-footer">
 													<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Oh no!</button>
-													<button type="button" className="btn btn-primary" onClick={()=>actions.deleteContact(item.id)} >Yes baby!</button>
+													<button type="button" className="btn btn-primary" onClick={()=>actions.deleteContact(item.id)} data-bs-dismiss="modal" >Yes baby!</button>
 												</div>
 											</div>
 										</div>

@@ -46,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  
 				  fetch("https://playground.4geeks.com/apis/fake/contact/" + indexToDelete, requestOptions)
 					.then(response => response.json())
-					.then(data => setStore({ contacts: data }))
+					.then(data => setStore({ contacts: store.contacts.filter((item)=>item.id!==indexToDelete) }))
 					.catch(error => console.log('error', error));
 					
 				  

@@ -15,7 +15,7 @@ export const Editcontact = () => {
 			{store.contacts.map((item) => {
 					return (
 						<>
-			<h1 className="text-center mt-3">Edit a contact</h1>
+			<h1 key={item.id} className="text-center mt-3">Edit a contact</h1>
 			<div className="mb-3">
 				<label htmlFor="fullName" className="form-label">Full Name</label>
 				<input type="text" className="form-control" id="fullName" placeholder={item.full_name} value={inputName} onChange={(e)=>setInputName(e.target.value)} />
@@ -34,7 +34,7 @@ export const Editcontact = () => {
 			</div>
 			<Link to="/">
 				<div className="d-grid gap-2">
-					<button  className="btn btn-primary" type="button" onClick={()=>actions.createContact(inputName, inputEmail, inputPhone, inputAdress)} >Save</button>
+					<button  className="btn btn-primary" type="button" onClick={()=>actions.editContact(inputName, inputEmail, inputPhone, inputAdress, item.id)} >Save</button>
 				</div>
 			</Link>
 			<Link to="/">

@@ -1,30 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
-
 import "../../styles/demo.css";
 
 export const Newcontact = () => {
 	const { store, actions } = useContext(Context);
-	const [inputName, setInputName ] = useState('');
-	const [inputEmail, setInputEmail] = useState('');
-	const [inputPhone, setInputPhone ] = useState('');
-	const [inputAdress, setInputAdress ] = useState('');
-
-	function addNewarray() {
-		if (inputName !== '' && inputEmail !== '' && inputPhone !== '' && inputAdress !== '') {
-			newContact = [{
-				name: {inputName},
-				email: {inputEmail},
-				phone: {inputPhone},
-				address: {newContact}
-			}]
-			setNewContact(array.from(newContact))
-		} else {
-			alert("All fields must be completed.");
-		}
-	}
+	const [inputName, setInputName ] = useState();
+	const [inputEmail, setInputEmail] = useState();
+	const [inputPhone, setInputPhone ] = useState();
+	const [inputAdress, setInputAdress ] = useState();
 
 	return (
 		<div className="container">
@@ -45,9 +29,11 @@ export const Newcontact = () => {
 				<label htmlFor="address" className="form-label">Address</label>
 				<input type="text" className="form-control" id="address" placeholder="Address" value={inputAdress} onChange={(e)=>setInputAdress(e.target.value)} />
 			</div>
-			<div className="d-grid gap-2">
-				<button className="btn btn-primary" type="button" onClick="" >Save</button>
-			</div>
+			<Link to="/">
+				<div className="d-grid gap-2">
+					<button  className="btn btn-primary" type="button" onClick={()=>actions.createContact(inputName, inputEmail, inputPhone, inputAdress)} >Save</button>
+				</div>
+			</Link>
 			<Link to="/">
 				<button className="btn text-primary mb-3">Or get back to contacts</button>
 			</Link>

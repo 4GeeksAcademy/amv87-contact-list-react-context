@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteContact: (indexToDelete) => {
 				//get the store
-				const store = setStore();
+				const store = getActions();
 
 				var requestOptions = {
 					method: 'DELETE',
@@ -45,16 +45,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  };
 				  
 				  fetch("https://playground.4geeks.com/apis/fake/contact/" + indexToDelete, requestOptions)
-					.then(response => response.json())
-					//.then(()=>{ getActions().loadSomeData()} )
-					.then(data => 
-						console.log(data),
-						setStore({ contacts: store.contacts.filter((item)=> item.id !== indexToDelete) })
-						
-					)
+					.then(response => response.text())
+					.then(result => console.log(result))
+					.then( ()=>{getActions().loadSomeData()} )
 					.catch(error => console.log('error', error));
+
+					// .then(data => 
+					// 	console.log(data),
+					// 	setStore({ contacts: store.contacts.filter((item)=> item.id !== indexToDelete) })
+						
+					// )
 					
-				  
 			},
 			editContact: (inputName, inputEmail, inputPhone, inputAdress, indexToEdit) => {
 				var myHeaders = new Headers();
@@ -78,7 +79,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				fetch("https://playground.4geeks.com/apis/fake/contact/" + indexToEdit, requestOptions)
 				.then(response => response.text())
 				.then(result => console.log(result))
-				.then(data => loadSomeData())
+				.then( () => {getActions().loadSomeData()} )
 				.catch(error => console.log('error', error));
 			},
 			createContact: (inputName, inputEmail, inputPhone, inputAdress) => {
@@ -105,9 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch("https://playground.4geeks.com/apis/fake/contact/", requestOptions)
 				.then(response => response.json())
-				.then(data => {
-					console.log(data)
-					getActions().loadSomeData()})
+				.then(() => {getActions().loadSomeData()})
 				.catch(error => console.log('error', error));
 
 			},

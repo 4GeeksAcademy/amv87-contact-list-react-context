@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			deleteContact: (indexToDelete) => {
 				//get the store
-				const store = getStore();
+				const store = setStore();
 
 				var requestOptions = {
 					method: 'DELETE',
@@ -46,7 +46,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  
 				  fetch("https://playground.4geeks.com/apis/fake/contact/" + indexToDelete, requestOptions)
 					.then(response => response.json())
-					.then(data => setStore({ contacts: store.contacts.filter((item)=> item.id !== indexToDelete) }))
+					//.then(()=>{ getActions().loadSomeData()} )
+					.then(data => 
+						console.log(data),
+						setStore({ contacts: store.contacts.filter((item)=> item.id !== indexToDelete) })
+						
+					)
 					.catch(error => console.log('error', error));
 					
 				  
@@ -78,6 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			createContact: (inputName, inputEmail, inputPhone, inputAdress) => {
 				console.log('Im working')
+				const store = getActions();
 
 				var myHeaders = new Headers();
 				myHeaders.append("Content-Type", "application/json");
@@ -99,7 +105,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				fetch("https://playground.4geeks.com/apis/fake/contact/", requestOptions)
 				.then(response => response.json())
-				.then(data => loadSomeData())
+				.then(data => {
+					console.log(data)
+					getActions().loadSomeData()})
 				.catch(error => console.log('error', error));
 
 			},

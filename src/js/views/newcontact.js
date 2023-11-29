@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/demo.css";
 
 export const Newcontact = () => {
 	const { store, actions } = useContext(Context);
-	const [inputName, setInputName ] = useState();
-	const [inputEmail, setInputEmail] = useState();
-	const [inputPhone, setInputPhone ] = useState();
-	const [inputAdress, setInputAdress ] = useState();
+	const [inputName, setInputName ] = useState('');
+	const [inputEmail, setInputEmail] = useState('');
+	const [inputPhone, setInputPhone ] = useState('');
+	const [inputAdress, setInputAdress ] = useState('');
 
 	return (
 		<div className="container">
@@ -31,7 +30,12 @@ export const Newcontact = () => {
 			</div>
 			<Link to="/">
 				<div className="d-grid gap-2">
-					<button  className="btn btn-primary" type="button" onClick={()=>actions.createContact(inputName, inputEmail, inputPhone, inputAdress)} >Save</button>
+					<button
+						className="btn btn-primary"
+						type="button"
+						onClick={()=>(inputName!=='' && inputEmail!=='' && inputPhone!=='' && inputAdress!=='' ? actions.createContact(inputName, inputEmail, inputPhone, inputAdress) : alert('You must complete all fields! Your contact has not been saved.'))} >
+						Save
+					</button>
 				</div>
 			</Link>
 			<Link to="/">
